@@ -9,18 +9,34 @@ export class TodoService {
   lists: List[] = [];
 
   constructor() {
-    const list1 = new List('Recolectar piedras del infinito');
-    const list2 = new List('Eliminar estos héroes');
-
-    this.lists.push(list1, list2);
-    console.log(this.lists);
+    this.loadFromStorage();
 
   }
 
   createList(title: string) {
     const newList = new List(title);
     this.lists.push(newList);
+    this.addToStorage();
 
+    return newList.id;
+  }
+
+  getList(id: string | number) {
+    id = Number(id);
+
+    return this.lists.find(dataList => dataList.id === id);
+  }
+
+  addToStorage() {
+    localStorage.setItem('data', JSON.stringify(this.lists));
+  }
+
+  loadFromStorage() {
+    if (localStorage.getItem('data')) {
+      this.lists = JSON.parse(localStorage.getItem('data'));
+    } else {
+      this.lists = [];
+    }
   }
 
 
