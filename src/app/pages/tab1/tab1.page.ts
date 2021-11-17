@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { List } from 'src/app/models/list.model';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -11,10 +10,7 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class Tab1Page {
 
-  lists: List[];
-
   constructor(public todo: TodoService, private router: Router, private alertController: AlertController) {
-    this.lists = this.todo.lists;
   }
 
   async addList() {
@@ -55,7 +51,6 @@ export class Tab1Page {
 
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
-
   }
 
 }

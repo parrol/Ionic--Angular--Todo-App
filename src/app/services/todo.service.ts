@@ -21,6 +21,12 @@ export class TodoService {
     return newList.id;
   }
 
+  deleteList(list: List) {
+    this.lists = this.lists.filter(listData => (listData.id !== list.id));
+
+    this.addToStorage();
+  }
+
   getList(id: string | number) {
     id = Number(id);
 
