@@ -8,12 +8,15 @@ import { AddPageRoutingModule } from './add-routing.module';
 
 import { AddPage } from './add.page';
 
+import { SwiperModule } from 'swiper/angular';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddPageRoutingModule
+    AddPageRoutingModule,
+    SwiperModule
   ],
   declarations: [AddPage]
 })

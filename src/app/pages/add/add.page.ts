@@ -3,6 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ListItem } from 'src/app/models/list-item.model';
 import { List } from 'src/app/models/list.model';
 import { TodoService } from 'src/app/services/todo.service';
+// import SwiperCore from 'swiper';
+// import { IonicSwiper } from '@ionic/angular';
+
+// SwiperCore.use([IonicSwiper]);
 
 @Component({
   selector: 'app-add',
@@ -45,5 +49,12 @@ export class AddPage {
       this.list.done = false;
     }
     this.todoService.addToStorage();
+  }
+
+  deleteItem(i: number) {
+    this.list.items.splice(i, 1);
+    console.log(`item #${i} deleted`);
+    this.todoService.addToStorage();
+
   }
 }

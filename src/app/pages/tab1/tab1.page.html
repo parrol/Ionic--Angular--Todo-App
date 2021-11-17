@@ -8,7 +8,7 @@
 
 <ion-content color="dark" [fullscreen]="true">
   <ion-list>
-    <ion-item color="dark" detail *ngFor="let list of lists">
+    <ion-item color="dark" detail *ngFor="let list of lists" [routerLink]="['/tabs','tab1','add',list.id]">
       <ion-label> {{list.title}}
       </ion-label>
     </ion-item>
