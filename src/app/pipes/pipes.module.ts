@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { DoneFilterPipe } from './done-filter.pipe';
+import { TypeFilterPipe } from './type-filter.pipe';
 
 
 @NgModule({
   declarations: [
-    DoneFilterPipe
+    TypeFilterPipe
   ],
   exports: [
-    DoneFilterPipe
+    TypeFilterPipe
   ]
 })
 export class PipesModule { }
