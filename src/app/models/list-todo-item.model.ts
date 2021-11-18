@@ -1,6 +1,4 @@
-
-
-export class ListItem {
+export class ListTodoItem {
 
     desc: string;
     done: boolean;
