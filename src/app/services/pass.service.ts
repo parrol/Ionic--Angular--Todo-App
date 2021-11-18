@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ListTodo } from '../models/list-todo.model';
+import { ListPass } from '../models/list-pass.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TodoService {
+export class PassService {
 
-  lists: ListTodo[] = [];
+  lists: ListPass[] = [];
 
   constructor() {
     this.loadFromStorage();
@@ -14,14 +14,14 @@ export class TodoService {
   }
 
   createList(title: string) {
-    const newList = new ListTodo(title);
+    const newList = new ListPass(title);
     this.lists.push(newList);
     this.addToStorage();
 
     return newList.id;
   }
 
-  deleteList(list: ListTodo) {
+  deleteList(list: ListPass) {
     this.lists = this.lists.filter(listData => (listData.id !== list.id));
 
     this.addToStorage();
