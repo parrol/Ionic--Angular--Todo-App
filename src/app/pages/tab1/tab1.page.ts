@@ -41,7 +41,7 @@ export class Tab1Page {
             }
 
             const listId = this.todo.createList(data.title);
-            this.router.navigateByUrl(`tabs/tab1/add/${listId}`);
+            this.router.navigateByUrl(`tabs/tab1/add/todo/${listId}`);
           }
         }
       ]

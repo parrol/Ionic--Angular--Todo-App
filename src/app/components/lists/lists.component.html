@@ -1,6 +1,6 @@
 <ion-list>
 
-  <ion-item-sliding *ngFor="let list of this.todoService.lists | doneFilter:listDone">
+  <ion-item-sliding *ngFor="let list of lists | typeFilter:listType">
 
     <ion-item color="dark" detail (click)="goToList(list)">
       <ion-label> {{list.title}}

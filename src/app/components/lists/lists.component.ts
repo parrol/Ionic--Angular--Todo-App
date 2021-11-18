@@ -1,34 +1,63 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonList } from '@ionic/angular';
-import { List } from 'src/app/models/list.model';
+import { ListTodo } from 'src/app/models/list-todo.model';
 import { TodoService } from 'src/app/services/todo.service';
+import { PassService } from 'src/app/services/pass.service';
 
 @Component({
   selector: 'app-lists',
   templateUrl: './lists.component.html',
   styleUrls: ['./lists.component.scss'],
 })
-export class ListsComponent {
+export class ListsComponent implements OnInit {
 
   @ViewChild(IonList) list: IonList;
-  @Input() listDone = true;
+  @Input() listType: string;
+  listDone: boolean;
+  lists: any;
 
-  constructor(public todoService: TodoService, private router: Router, public alertController: AlertController) { }
+  constructor(
+    private todoService: TodoService,
+    private passService: PassService,
+    private router: Router,
+    public alertController: AlertController) {
+  }
 
-  goToList(list: List) {
-    if (this.listDone) {
-      this.router.navigate(['/tabs', 'tab2', 'add', list.id]);
-    } else {
-      this.router.navigate(['/tabs', 'tab1', 'add', list.id]);
+  ngOnInit() {
+    if (this.listType === 'done') {
+      this.listDone = true;
+      this.lists = this.todoService.lists;
+    } else if (this.listType === 'pending') {
+      this.listDone = false;
+      this.lists = this.todoService.lists;
+    } else if (this.listType === 'pass') {
+      this.lists = this.passService.lists;
+      this.listDone = true;
     }
   }
 
-  deleteList(list: List) {
-    this.todoService.deleteList(list);
+  goToList(list: any) {
+    if (this.listType === 'done') {
+      this.router.navigate(['/tabs', 'tab2', 'add', 'todo', list.id]);
+    } else if (this.listType === 'pending') {
+      this.router.navigate(['/tabs', 'tab1', 'add', 'todo', list.id]);
+    } else {
+      this.router.navigate(['/tabs', 'tab3', 'add', 'pass', list.id]);
+    }
   }
 
-  async updateListTitle(list: List) {
+  deleteList(list: any) {
+    if (this.listType === 'pass') {
+      this.passService.deleteList(list);
+
+    } else {
+      this.todoService.deleteList(list);
+
+    }
+  }
+
+  async updateListTitle(list: ListTodo) {
 
     const alert = await this.alertController.create({
       header: 'Modificar titulo',
@@ -52,7 +81,13 @@ export class ListsComponent {
 
             } else {
               list.title = data.title;
-              this.todoService.addToStorage();
+              if (this.listType === 'pass') {
+                this.passService.addToStorage();
+
+              } else {
+                this.todoService.addToStorage();
+
+              }
               this.list.closeSlidingItems();
             }
           }

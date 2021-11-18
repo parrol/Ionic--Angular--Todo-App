@@ -21,30 +21,26 @@
   </ion-list>
 
   <ion-list>
-    <ion-list-header color="dark" *ngIf="list.items.length > 0">
+    <!-- *ngIf="list.items.length > 0" -->
+    <ion-list-header color="dark" >
       <ion-label>Tareas por hacer</ion-label>
     </ion-list-header>
 
-    <!-- <swiper class="animated fadeInDown" *ngFor="let item of list.items"> -->
-      <!-- ion-item -->
     <ion-item-sliding class="animated fadeInDown" *ngFor="let item of list.items; let i = index">
-      <!-- <ng-template swiperSlide> -->
-      <!-- <ion-slide> -->
 
-        <ion-item color="dark">
-          <ion-checkbox slot="start" color="tertiary" [(ngModel)]="item.done" (ionChange)="checkboxChanged(item)">
-          </ion-checkbox>
-          <ion-label> {{ item.desc }}</ion-label>
-        </ion-item>
 
-        <ion-item-options side="end">
-          <ion-item-option (click)="deleteItem(i)" color="danger">
-            <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
+      <ion-item color="dark">
+        <ion-checkbox *ngIf="type === 'todo'" slot="start" color="tertiary" [(ngModel)]="item.done" (ionChange)="checkboxChanged(item)">
+        </ion-checkbox>
+        <ion-label> {{ item.desc }}</ion-label>
+      </ion-item>
 
-        <!-- </ng-template> -->
-      <!-- </ion-slide> -->
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteItem(i)" color="danger">
+          <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
     </ion-item-sliding>
   </ion-list>
 </ion-content>

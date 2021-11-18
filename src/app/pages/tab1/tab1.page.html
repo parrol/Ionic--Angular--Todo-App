@@ -8,9 +8,8 @@
 
 <ion-content color="dark" [fullscreen]="true">
 
-  <app-lists [listDone]="false" ></app-lists>
+  <app-lists [listType]="'pending'"></app-lists>
 
-  <!-- fab placed to the top end -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addList()" color="tertiary">
       <ion-icon name="add"></ion-icon>
