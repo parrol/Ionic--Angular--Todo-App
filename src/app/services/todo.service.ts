@@ -10,7 +10,6 @@ export class TodoService {
 
   constructor() {
     this.loadFromStorage();
-
   }
 
   createList(title: string) {
@@ -44,6 +43,5 @@ export class TodoService {
       this.lists = [];
     }
   }
-
 
 }

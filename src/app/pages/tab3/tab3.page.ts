@@ -51,7 +51,4 @@ export class Tab3Page {
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
-
-
-
 }

@@ -4,7 +4,7 @@ import { ListsComponent } from './lists/lists.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { PipesModule } from '../pipes/pipes.module';
-
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import { PipesModule } from '../pipes/pipes.module';
     CommonModule,
     IonicModule,
     RouterModule,
-    PipesModule
+    PipesModule,
+    SwiperModule
   ]
 })
 export class ComponentsModule { }

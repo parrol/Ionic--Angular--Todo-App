@@ -2,9 +2,13 @@
   <ion-toolbar color="dark">
 
     <ion-buttons slot="start">
-      <ion-back-button color="tertiary" defaultHref="/tabs/tab1">
-
-      </ion-back-button>
+      <div *ngIf="type === 'pending'; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <ion-back-button color="tertiary" defaultHref="/tabs/tab1"></ion-back-button>
+      </ng-template>
+      <ng-template #elseBlock>
+        <ion-back-button color="tertiary" defaultHref="/tabs/tab3"></ion-back-button>
+      </ng-template>
     </ion-buttons>
 
     <ion-title>{{ list.title }}</ion-title>
@@ -15,25 +19,54 @@
 
   <ion-list>
     <ion-item color="dark">
-      <ion-label position="floating">Nuevo ítem</ion-label>
-      <ion-input type="text" [(ngModel)]="inputItemName" (keyup.enter)="addItem()"></ion-input>
+      <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
+      <ng-template #ThenBlock>
+        <ion-label position="floating">Nuevo usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="inputItemUser" (keyup.enter)="addItem()"></ion-input>
+        <ion-label position="floating">Nueva contraseña</ion-label>
+        <ion-input type="text" [(ngModel)]="inputItemPass" (keyup.enter)="addItem()"></ion-input>
+
+      </ng-template>
+      <ng-template #ElseBlock>
+        <ion-label position="floating">Nuevo ítem</ion-label>
+        <ion-input type="text" [(ngModel)]="inputItemName" (keyup.enter)="addItem()"></ion-input>
+      </ng-template>
     </ion-item>
   </ion-list>
 
   <ion-list>
-    <!-- *ngIf="list.items.length > 0" -->
-    <ion-list-header color="dark" >
-      <ion-label>Tareas por hacer</ion-label>
+    <ion-list-header *ngIf="list.items.length > 0" color="dark">
+      <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
+      <ng-template #ThenBlock>
+        <ion-label>Contraseñas guardadas</ion-label>
+      </ng-template>
+      <ng-template #ElseBlock>
+        <ion-label>Tareas por hacer</ion-label>
+      </ng-template>
+
+
     </ion-list-header>
+    <div *ngIf="list.items.length > 0" class="list-item-divider"></div>
+
 
     <ion-item-sliding class="animated fadeInDown" *ngFor="let item of list.items; let i = index">
-
-
       <ion-item color="dark">
-        <ion-checkbox *ngIf="type === 'todo'" slot="start" color="tertiary" [(ngModel)]="item.done" (ionChange)="checkboxChanged(item)">
-        </ion-checkbox>
-        <ion-label> {{ item.desc }}</ion-label>
+
+        <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
+        <ng-template #ThenBlock>
+          <div class="pass-item-container">
+            <ion-label (click)="copyToClipboard(item.user)"> {{ item.user }}</ion-label>
+            <ion-label (click)="copyToClipboard(item.pass)"> {{ item.pass }}</ion-label>
+          </div>
+        </ng-template>
+        <ng-template #ElseBlock>
+          <ion-checkbox slot="start" color="tertiary" [(ngModel)]="item.done" (ionChange)="checkboxChanged(item)">
+          </ion-checkbox>
+          <ion-label> {{ item.desc }}</ion-label>
+        </ng-template>
+
       </ion-item>
+      <div class="list-item-divider"></div>
 
       <ion-item-options side="end">
         <ion-item-option (click)="deleteItem(i)" color="danger">

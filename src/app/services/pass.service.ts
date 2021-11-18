@@ -10,7 +10,6 @@ export class PassService {
 
   constructor() {
     this.loadFromStorage();
-
   }
 
   createList(title: string) {
@@ -23,7 +22,6 @@ export class PassService {
 
   deleteList(list: ListPass) {
     this.lists = this.lists.filter(listData => (listData.id !== list.id));
-
     this.addToStorage();
   }
 
@@ -44,6 +42,5 @@ export class PassService {
       this.lists = [];
     }
   }
-
 
 }

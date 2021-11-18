@@ -50,10 +50,10 @@ export class ListsComponent implements OnInit {
   deleteList(list: any) {
     if (this.listType === 'pass') {
       this.passService.deleteList(list);
-
+      this.lists = this.passService.lists;
     } else {
       this.todoService.deleteList(list);
-
+      this.lists = this.todoService.lists;
     }
   }
 
