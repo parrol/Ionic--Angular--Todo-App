@@ -1,1 +1,12 @@
-@import '~swiper/swiper';
+.list-item-divider {
+  width: 100%;
+  border: 1px solid;
+  background: whitesmoke;
+}
+
+.pass-item-container {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  justify-content: space-evenly;
+}
