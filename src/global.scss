@@ -33,6 +33,13 @@ ion-list {
   color: #5260ff !important;
 }
 
+.md .toast {
+  text-align: center;
+  transform: translateY(-70px) !important;
+  --start: 20px;
+  --end: 20px;
+}
+
 // Fuente: https://daneden.github.io/animate.css/
 
 // Animaciones CSS

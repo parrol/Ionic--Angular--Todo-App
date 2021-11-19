@@ -5,6 +5,7 @@ import { ListPassItem } from 'src/app/models/list-pass-item';
 import { ListTodoItem } from 'src/app/models/list-todo-item.model';
 import { PassService } from 'src/app/services/pass.service';
 import { TodoService } from 'src/app/services/todo.service';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -24,7 +25,9 @@ export class AddPage {
     private todoService: TodoService,
     private passService: PassService,
     private route: ActivatedRoute,
-    private clipboard: Clipboard) {
+    private clipboard: Clipboard,
+    private toastController: ToastController) {
+    const toasty = this.toastController.create();
     const listId = this.route.snapshot.paramMap.get('listId');
     this.type = this.route.snapshot.paramMap.get('type');
 
@@ -83,7 +86,21 @@ export class AddPage {
     }
   }
 
+  async presentToast() {
+    //dismisses the first toat created in the constructor
+    this.toastController.dismiss();
+    const toast = await this.toastController.create({
+      cssClass: 'toast',
+      message: '¡Copiado en el portapapeles!',
+      position: 'bottom',
+      duration: 2000
+    });
+    toast.present();
+  }
+
   copyToClipboard(copy: string) {
+    this.presentToast();
     return this.clipboard.copy(copy);
   }
+
 }
