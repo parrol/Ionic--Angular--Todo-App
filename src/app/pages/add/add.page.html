@@ -1,5 +1,5 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar color="dark">
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
 
     <ion-buttons slot="start">
       <div *ngIf="type === 'pending'; then thenBlock else elseBlock"></div>
@@ -15,10 +15,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark">
+<ion-content>
 
   <ion-list>
-    <ion-item color="dark">
+    <ion-item>
       <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
       <ng-template #ThenBlock>
         <ion-label position="floating">Nuevo usuario</ion-label>
@@ -35,7 +35,7 @@
   </ion-list>
 
   <ion-list>
-    <ion-list-header *ngIf="list.items.length > 0" color="dark">
+    <ion-list-header *ngIf="list.items.length > 0">
       <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
       <ng-template #ThenBlock>
         <ion-label>Contraseñas guardadas</ion-label>
@@ -50,7 +50,7 @@
 
 
     <ion-item-sliding class="animated fadeInDown" *ngFor="let item of list.items; let i = index">
-      <ion-item color="dark">
+      <ion-item>
 
         <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
         <ng-template #ThenBlock>

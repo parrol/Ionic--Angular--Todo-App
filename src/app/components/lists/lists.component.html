@@ -2,7 +2,7 @@
 
   <ion-item-sliding *ngFor="let list of lists | typeFilter:listType">
 
-    <ion-item color="dark" detail (click)="goToList(list)">
+    <ion-item detail (click)="goToList(list)">
       <ion-label> {{list.title}}
       </ion-label>
       <ion-note slot="end" color="tertiary"> {{ list.items.length }} </ion-note>
