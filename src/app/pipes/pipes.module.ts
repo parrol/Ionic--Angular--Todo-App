@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { TypeFilterPipe } from './type-filter.pipe';
+import { PasswordPipe } from './password.pipe';
 
 
 @NgModule({
   declarations: [
-    TypeFilterPipe
+    TypeFilterPipe,
+    PasswordPipe
   ],
   exports: [
-    TypeFilterPipe
+    TypeFilterPipe,
+    PasswordPipe
   ]
 })
 export class PipesModule { }

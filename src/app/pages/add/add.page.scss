@@ -7,6 +7,12 @@
 .pass-item-container {
   display: flex;
   flex-direction: column;
+  width: 95%;
   height: 80px;
   justify-content: space-evenly;
+}
+
+.pass-item-container__pass {
+  display: flex;
+  justify-content: space-between;
 }

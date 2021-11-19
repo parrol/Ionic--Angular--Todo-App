@@ -22,6 +22,7 @@ export class AddPage {
   inputItemName = '';
   inputItemUser = '';
   inputItemPass = '';
+  showPasswordIcon = 'eye-off-outline';
 
   constructor(
     private todoService: TodoService,
@@ -89,7 +90,7 @@ export class AddPage {
   async modifyItemPass(item: ListPassItem) {
 
     const alert = await this.alertController.create({
-      header: 'Modificar usuario y contraseña',
+      header: 'Editar usuario o contraseña',
       inputs: [
         {
           name: 'user',
@@ -108,7 +109,7 @@ export class AddPage {
           handler: () => this.listSliding.closeSlidingItems()
         },
         {
-          text: 'Modificar',
+          text: 'Editar',
           handler: (data) => {
             if ((data.user.length === 0) || (data.pass.length === 0)) {
               return;
@@ -131,7 +132,7 @@ export class AddPage {
   async modifyItemTodo(item: ListTodoItem) {
 
     const alert = await this.alertController.create({
-      header: 'Modificar ítem',
+      header: 'Editar ítem',
       inputs: [
         {
           name: 'desc',
@@ -145,7 +146,7 @@ export class AddPage {
           handler: () => this.listSliding.closeSlidingItems()
         },
         {
-          text: 'Modificar',
+          text: 'Editar',
           handler: (data) => {
             if (data.desc.length === 0) {
               return;
@@ -190,6 +191,15 @@ export class AddPage {
   copyToClipboard(copy: string) {
     this.presentToast();
     return this.clipboard.copy(copy);
+  }
+
+  toglePassword(item: ListPassItem){
+    item.showPassword = !item.showPassword;
+    if (item.showPassword) {
+      item.showPasswordIcon = 'eye-outline';
+    } else {
+      item.showPasswordIcon = 'eye-off-outline';
+    }
   }
 
 }

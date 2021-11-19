@@ -56,7 +56,10 @@
         <ng-template #ThenBlock>
           <div class="pass-item-container">
             <ion-label (click)="copyToClipboard(item.user)"> {{ item.user }}</ion-label>
-            <ion-label (click)="copyToClipboard(item.pass)"> {{ item.pass }}</ion-label>
+            <div class="pass-item-container__pass">
+              <ion-label (click)="copyToClipboard(item.pass)"> {{ item.pass | password:item.showPassword }}</ion-label>
+              <ion-icon (click)="toglePassword(item)" slot="end" name="{{ item.showPasswordIcon }}"></ion-icon>
+            </div>
           </div>
         </ng-template>
         <ng-template #ElseBlock>

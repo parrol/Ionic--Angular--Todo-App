@@ -60,7 +60,7 @@ export class ListsComponent implements OnInit {
   async updateListTitle(list: ListTodo) {
 
     const alert = await this.alertController.create({
-      header: 'Modificar titulo',
+      header: 'Editar titulo',
       inputs: [
         {
           name: 'title',
@@ -74,7 +74,7 @@ export class ListsComponent implements OnInit {
           handler: () => this.list.closeSlidingItems()
         },
         {
-          text: 'Modificar',
+          text: 'Editar',
           handler: (data) => {
             if (data.title.length === 0) {
               return;
