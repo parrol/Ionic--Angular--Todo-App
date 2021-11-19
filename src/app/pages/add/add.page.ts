@@ -1,11 +1,11 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListPassItem } from 'src/app/models/list-pass-item';
 import { ListTodoItem } from 'src/app/models/list-todo-item.model';
 import { PassService } from 'src/app/services/pass.service';
 import { TodoService } from 'src/app/services/todo.service';
-import { ToastController } from '@ionic/angular';
+import { AlertController, IonItemSliding, IonList, ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -15,6 +15,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class AddPage {
 
+  @ViewChild(IonList) listSliding: IonList;
+  @ViewChild(IonItemSliding) itemSliding: IonItemSliding;
   type: string;
   list: any;
   inputItemName = '';
@@ -26,7 +28,8 @@ export class AddPage {
     private passService: PassService,
     private route: ActivatedRoute,
     private clipboard: Clipboard,
-    private toastController: ToastController) {
+    private toastController: ToastController,
+    private alertController: AlertController) {
     const toasty = this.toastController.create();
     const listId = this.route.snapshot.paramMap.get('listId');
     this.type = this.route.snapshot.paramMap.get('type');
@@ -73,6 +76,92 @@ export class AddPage {
       this.list.done = false;
     }
     this.todoService.addToStorage();
+  }
+
+  async modifyItem(item: any) {
+    if (this.type === 'pass') {
+      this.modifyItemPass(item);
+    } else {
+      this.modifyItemTodo(item);
+    }
+  }
+
+  async modifyItemPass(item: ListPassItem) {
+
+    const alert = await this.alertController.create({
+      header: 'Modificar usuario y contraseña',
+      inputs: [
+        {
+          name: 'user',
+          type: 'text',
+          value: item.user
+        },
+        {
+          name: 'pass',
+          type: 'text',
+          value: item.pass
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => this.listSliding.closeSlidingItems()
+        },
+        {
+          text: 'Modificar',
+          handler: (data) => {
+            if ((data.user.length === 0) || (data.pass.length === 0)) {
+              return;
+
+            } else {
+              item.user = data.user;
+              item.pass = data.pass;
+              this.passService.addToStorage();
+              this.itemSliding.closeOpened();
+            }
+          }
+        }],
+    });
+
+    alert.present();
+    const { role } = await alert.onDidDismiss();
+
+  }
+
+  async modifyItemTodo(item: ListTodoItem) {
+
+    const alert = await this.alertController.create({
+      header: 'Modificar ítem',
+      inputs: [
+        {
+          name: 'desc',
+          type: 'text',
+          value: item.desc
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => this.listSliding.closeSlidingItems()
+        },
+        {
+          text: 'Modificar',
+          handler: (data) => {
+            if (data.desc.length === 0) {
+              return;
+
+            } else {
+              item.desc = data.desc;
+              this.todoService.addToStorage();
+              this.itemSliding.closeOpened();
+            }
+          }
+        }],
+    });
+
+    alert.present();
+    const { role } = await alert.onDidDismiss();
+
   }
 
   deleteItem(i: number) {
