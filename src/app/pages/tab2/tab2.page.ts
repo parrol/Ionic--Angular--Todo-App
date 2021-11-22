@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-tab2',
@@ -8,6 +7,6 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class Tab2Page {
 
-  constructor(public todo: TodoService) { }
+  constructor() { }
 
 }

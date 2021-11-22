@@ -10,9 +10,15 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class Tab1Page {
 
-  constructor(public todo: TodoService, private router: Router, private alertController: AlertController) {
+  constructor(
+    public todo: TodoService,
+    private router: Router,
+    private alertController: AlertController) {
   }
 
+  /**
+   * creates an alert that gives to option to create a new pending list.
+   */
   async addList() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -41,6 +47,7 @@ export class Tab1Page {
             }
 
             const listId = this.todo.createList(data.title);
+            //navigates to the page where the user can add items to the created list.
             this.router.navigateByUrl(`tabs/tab1/add/todo/${listId}`);
           }
         }

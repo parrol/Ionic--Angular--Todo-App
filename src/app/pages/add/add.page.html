@@ -17,9 +17,11 @@
 
 <ion-content>
 
+  <!-- shows the input for creating a new item depending on the list type -->
   <ion-list>
     <ion-item>
       <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
+
       <ng-template #ThenBlock>
         <ion-label position="floating">Nuevo usuario</ion-label>
         <ion-input type="text" [(ngModel)]="inputItemUser" (keyup.enter)="addItem()"></ion-input>
@@ -34,6 +36,7 @@
     </ion-item>
   </ion-list>
 
+  <!-- shows informative label depending on the list type -->
   <ion-list>
     <ion-list-header *ngIf="list.items.length > 0">
       <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
@@ -46,13 +49,15 @@
 
 
     </ion-list-header>
+
     <div *ngIf="list.items.length > 0" class="list-item-divider"></div>
 
-
+    <!-- shows the list's items depending of the list type -->
     <ion-item-sliding class="animated fadeInDown" *ngFor="let item of list.items; let i = index">
       <ion-item>
 
         <div *ngIf="type === 'pass'; then ThenBlock else ElseBlock"></div>
+
         <ng-template #ThenBlock>
           <div class="pass-item-container">
             <ion-label (click)="copyToClipboard(item.user)"> {{ item.user }}</ion-label>
@@ -62,6 +67,7 @@
             </div>
           </div>
         </ng-template>
+
         <ng-template #ElseBlock>
           <ion-checkbox slot="start" color="tertiary" [(ngModel)]="item.done" (ionChange)="checkboxChanged(item)">
           </ion-checkbox>
@@ -69,8 +75,10 @@
         </ng-template>
 
       </ion-item>
+
       <div class="list-item-divider"></div>
 
+      <!-- sliding options -->
       <ion-item-options side="start">
         <ion-item-option (click)="modifyItem(item)" color="primary">
           <ion-icon slot="icon-only" name="create-outline"></ion-icon>

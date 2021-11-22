@@ -6,13 +6,19 @@ import { ListTodo } from '../models/list-todo.model';
 })
 export class TodoService {
 
+  //Array of todo lists to be storaged.
   lists: ListTodo[] = [];
 
   constructor() {
     this.loadFromStorage();
   }
 
-  createList(title: string) {
+  /**
+   *
+   * @param title title of the list to be created.
+   * @returns the id of the list created.
+   */
+  createList(title: string): number {
     const newList = new ListTodo(title);
     this.lists.push(newList);
     this.addToStorage();
@@ -20,23 +26,39 @@ export class TodoService {
     return newList.id;
   }
 
-  deleteList(list: ListTodo) {
+  /**
+   * deletes a list and updates the localStorage.
+   * @param list todo list to be deleted.
+   */
+  deleteList(list: ListTodo): void {
     this.lists = this.lists.filter(listData => (listData.id !== list.id));
 
     this.addToStorage();
   }
 
-  getList(id: string | number) {
+  /**
+   *
+   * @param id of the list to be retrieved. Could be number or string, but doesn't matter
+   * since it's casted to number.
+   * @returns todo list with the given id.
+   */
+  getList(id: string | number): ListTodo {
     id = Number(id);
 
     return this.lists.find(dataList => dataList.id === id);
   }
 
-  addToStorage() {
+  /**
+   * saves list to LocalStorage.
+   */
+  addToStorage(): void {
     localStorage.setItem('data', JSON.stringify(this.lists));
   }
 
-  loadFromStorage() {
+  /**
+   * retrieves the lists in localStorage.
+   */
+  loadFromStorage(): void {
     if (localStorage.getItem('data')) {
       this.lists = JSON.parse(localStorage.getItem('data'));
     } else {

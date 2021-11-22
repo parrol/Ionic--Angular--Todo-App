@@ -11,8 +11,14 @@ import { PassService } from 'src/app/services/pass.service';
 })
 export class Tab3Page {
 
-  constructor(private alertController: AlertController, private router: Router, private pass: PassService) { }
+  constructor(
+    private alertController: AlertController,
+    private router: Router,
+    private pass: PassService) { }
 
+    /**
+     * creates an alert that gives the option to create a new list of password.
+     */
   async addPassList() {
     const alert = await this.alertController.create({
       header: 'Sitio web o aplicación',
@@ -40,6 +46,7 @@ export class Tab3Page {
             }
 
             const listId = this.pass.createList(data.title);
+            //navigates to the page where the user can add new items to the list.
             this.router.navigateByUrl(`tabs/tab3/add/pass/${listId}`);
           }
         }

@@ -15,10 +15,14 @@ import { AlertController, IonItemSliding, IonList, ToastController } from '@ioni
 })
 export class AddPage implements OnInit {
 
+  //targets the IonList component so the native functions can be used.
   @ViewChild(IonList) listSliding: IonList;
   @ViewChild(IonItemSliding) itemSliding: IonItemSliding;
+  //list type to be shown.
   type: string;
+  //list to be shown.
   list: any;
+  //inputs to ge values of items to be added or modified.
   inputItemName = '';
   inputItemUser = '';
   inputItemPass = '';
@@ -31,10 +35,16 @@ export class AddPage implements OnInit {
     private clipboard: Clipboard,
     private toastController: ToastController,
     private alertController: AlertController) {
+    /**
+     * temporary empty alert created to be dismissed later when other
+     * alerts are created.
+     */
     const toasty = this.toastController.create();
+    // gets the list type from url.
     const listId = this.route.snapshot.paramMap.get('listId');
     this.type = this.route.snapshot.paramMap.get('type');
 
+    //initializes the list to be shown depeding on its type.
     if (this.type === 'todo') {
       this.list = todoService.getList(listId);
     } else {
@@ -43,6 +53,10 @@ export class AddPage implements OnInit {
 
   }
 
+  /**
+   * initializes the items so that the password is always hidden
+   * when the page is visited no matter what the user had set previously.
+   */
   ngOnInit() {
     this.list.items.forEach(item => {
       item.showPassword = false;
@@ -50,13 +64,18 @@ export class AddPage implements OnInit {
     });
   }
 
-  addItem() {
+  /**
+   *
+   * @returns creates a new password item and adds it to the current password list.
+   */
+  addItem(): void {
 
     if (this.type === 'pass') {
       console.log(this.inputItemUser);
       console.log(this.inputItemPass);
       this.list.items.push(new ListPassItem(this.inputItemUser, this.inputItemPass));
       this.passService.addToStorage();
+      //clears the input as it is an NgModel.
       this.inputItemUser = '';
       this.inputItemPass = '';
     } else {
@@ -68,11 +87,12 @@ export class AddPage implements OnInit {
       // the list receieved.
       this.list.items.push(new ListTodoItem(this.inputItemName));
       this.todoService.addToStorage();
+      //clears the input as it is an NgModel.
       this.inputItemName = '';
     }
   }
 
-  checkboxChanged(item: ListTodoItem) {
+  checkboxChanged(item: ListTodoItem): void {
 
     const pending = this.list.items.filter(itemData => itemData.done === false).length;
     console.log({ pending });
@@ -87,6 +107,10 @@ export class AddPage implements OnInit {
     this.todoService.addToStorage();
   }
 
+  /**
+   * modifies the item of a list depending on thhe list type.
+   * @param item a list todo item or a list pass item.
+   */
   async modifyItem(item: any) {
     if (this.type === 'pass') {
       this.modifyItemPass(item);
@@ -95,6 +119,7 @@ export class AddPage implements OnInit {
     }
   }
 
+  //@todo unify both functions in one.
   async modifyItemPass(item: ListPassItem) {
 
     const alert = await this.alertController.create({
@@ -173,6 +198,10 @@ export class AddPage implements OnInit {
 
   }
 
+  /**
+   * deletes the item in the given position.
+   * @param i position of the item to be deleted.
+   */
   deleteItem(i: number) {
     this.list.items.splice(i, 1);
     console.log(`item #${i} deleted`);
@@ -184,6 +213,9 @@ export class AddPage implements OnInit {
     }
   }
 
+  /**
+   * shows a toast when the user copies an user or password.
+   */
   async presentToast() {
     //dismisses the first toat created in the constructor
     this.toastController.dismiss();
@@ -196,11 +228,20 @@ export class AddPage implements OnInit {
     toast.present();
   }
 
+  /**
+   *
+   * @param copy string to be copied.
+   * @returns copies the string touch/click to the device's clipboard.
+   */
   copyToClipboard(copy: string) {
     this.presentToast();
     return this.clipboard.copy(copy);
   }
 
+  /**
+   * changes the icon shown when password is visible or hidden.
+   * @param item password list item.
+   */
   toglePassword(item: ListPassItem) {
     item.showPassword = !item.showPassword;
     if (item.showPassword) {

@@ -15,6 +15,7 @@ export class ListsComponent implements OnInit {
   @ViewChild(IonList) list: IonList;
   @Input() listType: string;
   listDone: boolean;
+  //lists currently shown on this component.
   lists: any;
 
   constructor(
@@ -24,6 +25,7 @@ export class ListsComponent implements OnInit {
     public alertController: AlertController) {
   }
 
+  //initializes the type of list to be shown on the component.
   ngOnInit() {
     if (this.listType === 'done') {
       this.listDone = true;
@@ -37,6 +39,11 @@ export class ListsComponent implements OnInit {
     }
   }
 
+  /**
+   * navigates to the adequate page depending on the type of list
+   * and id of that list.
+   * @param list a todo or pass list.
+   */
   goToList(list: any) {
     if (this.listType === 'done') {
       this.router.navigate(['/tabs', 'tab2', 'add', 'todo', list.id]);
@@ -47,6 +54,10 @@ export class ListsComponent implements OnInit {
     }
   }
 
+  /**
+   * deletes a given list.
+   * @param list a todo or pass list.
+   */
   deleteList(list: any) {
     if (this.listType === 'pass') {
       this.passService.deleteList(list);
@@ -57,6 +68,10 @@ export class ListsComponent implements OnInit {
     }
   }
 
+  /**
+   * creates an alert that gives the opcion to edit the title of the selected list.
+   * @param list todo list.
+   */
   async updateListTitle(list: ListTodo) {
 
     const alert = await this.alertController.create({
