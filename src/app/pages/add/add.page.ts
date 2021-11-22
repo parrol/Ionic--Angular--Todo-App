@@ -1,5 +1,5 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListPassItem } from 'src/app/models/list-pass-item';
 import { ListTodoItem } from 'src/app/models/list-todo-item.model';
@@ -13,7 +13,7 @@ import { AlertController, IonItemSliding, IonList, ToastController } from '@ioni
   templateUrl: './add.page.html',
   styleUrls: ['./add.page.scss'],
 })
-export class AddPage {
+export class AddPage implements OnInit {
 
   @ViewChild(IonList) listSliding: IonList;
   @ViewChild(IonItemSliding) itemSliding: IonItemSliding;
@@ -40,6 +40,14 @@ export class AddPage {
     } else {
       this.list = passService.getList(listId);
     }
+
+  }
+
+  ngOnInit() {
+    this.list.items.forEach(item => {
+      item.showPassword = false;
+      item.showPasswordIcon = 'eye-off-outline';
+    });
   }
 
   addItem() {
@@ -193,7 +201,7 @@ export class AddPage {
     return this.clipboard.copy(copy);
   }
 
-  toglePassword(item: ListPassItem){
+  toglePassword(item: ListPassItem) {
     item.showPassword = !item.showPassword;
     if (item.showPassword) {
       item.showPasswordIcon = 'eye-outline';
