@@ -109,6 +109,7 @@ npm is needed to install the dependecies.
 * npm
   ```sh
   npm install npm@latest -g
+
   ```
 
 ### Installation
@@ -116,14 +117,17 @@ npm is needed to install the dependecies.
 1. Clone the repo
    ```sh
    git clone https://github.com/parrol/Ionic--Angular--Todo-App.git
+
    ```
 2. Install NPM packages
    ```sh
    npm install
+
    ```
 3. Run locally
    ```
    ionic serve
+
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -218,7 +222,7 @@ Project Link: [https://github.com/parrol/Ionic--Angular--Todo-App](https://githu
 [stars-url]: https://github.com/github_username/repo_name/stargazers
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
 [issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/parrol/repo_name.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/parrol/Ionic--Angular--Todo-App.svg?style=for-the-badge
 [license-url]: https://github.com/parrol/Ionic--Angular--Todo-App/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/carlosp1308/
