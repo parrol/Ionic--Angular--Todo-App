@@ -193,7 +193,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Carlos Parra - [@AlcaParrax](https://twitter.com/AlcaParrax) - carlos.parra97@gmail.com
+Carlos Parra - [@ParraCodes](https://twitter.com/ParraCodes) - carlos.parra97@gmail.com
 
 Project Link: [https://github.com/parrol/Ionic--Angular--Todo-App](https://github.com/parrol/Ionic--Angular--Todo-App)
 
