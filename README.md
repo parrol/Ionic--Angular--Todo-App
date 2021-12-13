@@ -11,11 +11,12 @@
 <!--
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
+
 [![Issues][issues-shield]][issues-url]
 -->
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+[![Stargazers][stars-shield]][stars-url]
 
 
 
@@ -30,10 +31,10 @@
 <h3 align="center">Todo - Password Manager App</h3>
 
   <p align="center">
-    First app with Ionic (Angular). May become something complex for portfolio purposes. 
+    Todo and Password Manager app built with Angular and Ionic. 
     <br />
     <br />
-    <a href="https://github.com/parrol/Ionic--Angular--Todo-App">View Demo</a>
+    <a href="https://pass-mngr.netlify.app">View Live</a>
     ·
     <a href="https://github.com/parrol/Ionic--Angular--Todo-App/issues">Report Bug</a>
   </p>
@@ -73,7 +74,7 @@
   </ol>
 </details>
 
-
+<div id="about-the-project"></div>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -83,9 +84,7 @@
 This app started as a ToDo App following an Angular course on Udemy, later on I 
 used that as a starting point for a password manager side project to be showcased as part of my porfolio.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
+<div id="built-with"></div>
 
 ### Built With
 
@@ -95,13 +94,14 @@ used that as a starting point for a password manager side project to be showcase
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
+<div id="getting-started"></div>
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
+
+<div id="prerequisites"></div>
 
 ### Prerequisites
 
@@ -111,6 +111,8 @@ npm is needed to install the dependecies.
   npm install npm@latest -g
 
   ```
+
+<div id="installation"></div>
 
 ### Installation
 
@@ -144,6 +146,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <p align="right">(<a href="#top">back to top</a>)</p>
 -->
 
+<div id="roadmap"></div>
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -151,6 +154,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Add support for password lists and items.
 - [x] Copy users and passwords on click/tap.
 - [x] Show/hide passwords with asterisks.
+- [ ] Fix light/dark theme.
+- [ ] Add original styles.
 - [ ] Add password encryption to save locally.
 - [ ] Add support for a master password.
 - [ ] Add option for exporting and importing passwords (and maybe todo lists).
@@ -180,15 +185,14 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#top">back to top</a>)</p>
 -->
 
+<div id="license"></div>
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
+<div id="contact"></div>
 
 <!-- CONTACT -->
 ## Contact
@@ -218,8 +222,8 @@ Project Link: [https://github.com/parrol/Ionic--Angular--Todo-App](https://githu
 [contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
 [forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
+[stars-shield]: https://img.shields.io/github/stars/parrol/Ionic--Angular--Todo-App.svg?style=for-the-badge
+[stars-url]: https://github.com/parrol/Ionic--Angular--Todo-App/stargazers
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
 [issues-url]: https://github.com/github_username/repo_name/issues
 [license-shield]: https://img.shields.io/github/license/parrol/Ionic--Angular--Todo-App.svg?style=for-the-badge
